@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Send, Heart, Wind, Sparkles, Info } from "lucide-react";
+import { Send, Heart, Wind, Sparkles, Info, Users, Smile } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,14 +8,16 @@ import AppLayout from "@/components/AppLayout";
 type Message = { from: "bot" | "user"; text: string };
 
 const initial: Message[] = [
-  { from: "bot", text: "Hi Sarah 💜 I'm here for you. How are you feeling today?" },
-  { from: "bot", text: "Remember — whatever you're feeling right now is completely normal. You're not alone in this." },
+  { from: "bot", text: "Hi Sarah 💜 I'm your AI companion. I'm here to listen, support, and help you feel calm." },
+  { from: "bot", text: "Whatever you're feeling right now is completely normal. You're not alone in this." },
 ];
 
 const suggestions = [
-  { icon: Wind, label: "Breathing exercise", response: "Let's try a calming breathing exercise together. Breathe in for 4 counts… hold for 4… and slowly out for 6. Repeat 3 times. You're doing wonderfully. 🌬️" },
+  { icon: Wind, label: "Breathing exercise", response: "Let's try a calming breathing exercise together.\n\n🫧 Breathe in for 4 counts…\n🫧 Hold for 4…\n🫧 Slowly out for 6.\n\nRepeat 3 times. You're doing wonderfully. 🌬️" },
   { icon: Sparkles, label: "Positive affirmation", response: "Here's something for you: 'My body is strong and capable. I trust the process and give myself grace.' 🌸" },
   { icon: Heart, label: "I feel anxious", response: "Anxiety is such a common feeling during IVF. It shows how much you care. Try to be gentle with yourself today — one moment at a time. 💛" },
+  { icon: Smile, label: "Relaxation tips", response: "Here are a few gentle ideas:\n\n🌿 Take a warm bath with lavender\n📖 Read a comforting book\n🎵 Listen to calming music\n☕ Make your favorite warm drink\n\nSmall comforts matter. 💜" },
+  { icon: Users, label: "Tell my partner", response: "Would you like me to let your partner know you could use some extra support today? I can send a gentle notification with just the right words. 💞" },
 ];
 
 const Chat = () => {
@@ -30,7 +32,7 @@ const Chat = () => {
       const match = suggestions.find((s) => text.toLowerCase().includes(s.label.toLowerCase()));
       setMessages((prev) => [
         ...prev,
-        { from: "bot", text: match?.response || "Thank you for sharing that with me. I'm here for you, always. 💜" },
+        { from: "bot", text: match?.response || "Thank you for sharing that with me. I'm here for you, always. 💜\n\nRemember, this is emotional support — not a medical diagnosis. Your feelings are valid, and your strength is remarkable." },
       ]);
     }, 800);
   };
@@ -39,7 +41,7 @@ const Chat = () => {
     <AppLayout>
       <div className="flex flex-col h-[calc(100vh-10rem)] md:h-[calc(100vh-6rem)] animate-fade-in">
         <div className="mb-4">
-          <h1 className="font-display text-2xl font-bold text-foreground">Emotional Support</h1>
+          <h1 className="font-display text-2xl font-bold text-foreground">Emotional Support 💬</h1>
           <p className="text-muted-foreground text-sm mt-1">A safe space to share and breathe 🌿</p>
         </div>
 
@@ -57,12 +59,25 @@ const Chat = () => {
           ))}
         </div>
 
+        {/* Breathing Animation Card */}
+        <Card className="border-0 bg-gradient-to-r from-ivf-lavender/40 to-ivf-blue/30 mb-4">
+          <CardContent className="flex items-center gap-4 p-4">
+            <div className="w-12 h-12 rounded-full bg-ivf-lavender flex items-center justify-center animate-breathe">
+              <span className="text-xl">🫧</span>
+            </div>
+            <div>
+              <p className="text-sm font-medium text-foreground">Quick calm</p>
+              <p className="text-xs text-muted-foreground">Breathe with the bubble — in… hold… out…</p>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Messages */}
         <div className="flex-1 overflow-y-auto space-y-3 pr-1">
           {messages.map((msg, i) => (
             <div key={i} className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}>
               <div
-                className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+                className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed whitespace-pre-line ${
                   msg.from === "user"
                     ? "bg-primary text-primary-foreground rounded-br-md"
                     : "bg-card shadow-sm border rounded-bl-md"

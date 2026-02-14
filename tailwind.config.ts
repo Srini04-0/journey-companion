@@ -68,6 +68,9 @@ export default {
           mint: "hsl(var(--ivf-mint))",
           peach: "hsl(var(--ivf-peach))",
           warm: "hsl(var(--ivf-warm))",
+          safe: "hsl(var(--ivf-safe))",
+          monitor: "hsl(var(--ivf-monitor))",
+          alert: "hsl(var(--ivf-alert))",
         },
       },
       borderRadius: {
@@ -92,12 +95,17 @@ export default {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.7" },
         },
+        "slide-in-right": {
+          from: { opacity: "0", transform: "translateX(16px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.5s ease-out forwards",
         "pulse-gentle": "pulse-gentle 3s ease-in-out infinite",
+        "slide-in-right": "slide-in-right 0.4s ease-out forwards",
       },
     },
   },

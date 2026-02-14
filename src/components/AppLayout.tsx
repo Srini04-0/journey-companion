@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Home, Pill, MessageCircle, Activity, Settings, Bell, Users, Stethoscope } from "lucide-react";
+import { Home, Pill, MessageCircle, Activity, Settings, Bell, Users, Stethoscope, AlertTriangle } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
@@ -8,7 +8,7 @@ const bottomNav = [
   { to: "/medications", icon: Pill, label: "Meds" },
   { to: "/chat", icon: MessageCircle, label: "Chat" },
   { to: "/symptoms", icon: Activity, label: "Track" },
-  { to: "/settings", icon: Settings, label: "Settings" },
+  { to: "/settings", icon: Settings, label: "More" },
 ];
 
 const desktopNav = [
@@ -18,6 +18,7 @@ const desktopNav = [
   { to: "/symptoms", icon: Activity, label: "Symptoms" },
   { to: "/partner", icon: Users, label: "Partner" },
   { to: "/clinic", icon: Stethoscope, label: "Clinic" },
+  { to: "/emergency", icon: AlertTriangle, label: "Emergency" },
   { to: "/notifications", icon: Bell, label: "Notifications" },
   { to: "/settings", icon: Settings, label: "Settings" },
 ];

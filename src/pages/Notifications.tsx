@@ -1,18 +1,21 @@
 import { useState } from "react";
-import { Pill, Calendar, Heart, Bell } from "lucide-react";
+import { Pill, Calendar, Heart, Bell, Brain, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import AppLayout from "@/components/AppLayout";
 
-type Tab = "all" | "meds" | "appointments" | "support";
+type Tab = "all" | "meds" | "appointments" | "support" | "insights";
 
 const notifications = [
   { type: "meds" as const, icon: Pill, title: "Evening medication reminder", desc: "Time for Cetrotide 0.25mg — you're almost done for today 🌙", time: "2 hours ago", bg: "bg-ivf-lavender" },
+  { type: "insights" as const, icon: Brain, title: "AI wellness update", desc: "Your recovery pattern looks stable. Keep resting when you can. 🌿", time: "3 hours ago", bg: "bg-ivf-blue" },
   { type: "appointments" as const, icon: Calendar, title: "Upcoming scan", desc: "Ultrasound with Dr. Patel on Thursday at 10:30 AM", time: "5 hours ago", bg: "bg-ivf-blue" },
   { type: "support" as const, icon: Heart, title: "Daily check-in", desc: "How are you feeling today? Take a moment to reflect 💛", time: "8 hours ago", bg: "bg-ivf-pink" },
   { type: "meds" as const, icon: Pill, title: "Morning medications taken", desc: "Great job completing your morning doses! ✓", time: "Yesterday", bg: "bg-ivf-mint" },
+  { type: "support" as const, icon: Users, title: "Partner support nudge", desc: "Consider sending her a kind message today 💞", time: "Yesterday", bg: "bg-ivf-pink" },
   { type: "appointments" as const, icon: Calendar, title: "Appointment confirmed", desc: "Your egg retrieval consultation is scheduled for next Monday.", time: "2 days ago", bg: "bg-ivf-blue" },
-  { type: "support" as const, icon: Heart, title: "Partner sent encouragement", desc: "Your partner is thinking of you today 💜", time: "2 days ago", bg: "bg-ivf-pink" },
+  { type: "insights" as const, icon: Brain, title: "Stress levels insight", desc: "Slightly elevated stress detected. Try a breathing exercise today.", time: "2 days ago", bg: "bg-ivf-peach" },
+  { type: "support" as const, icon: Heart, title: "Partner sent encouragement", desc: "Your partner is thinking of you today 💜", time: "3 days ago", bg: "bg-ivf-pink" },
 ];
 
 const tabs: { key: Tab; label: string }[] = [
@@ -20,6 +23,7 @@ const tabs: { key: Tab; label: string }[] = [
   { key: "meds", label: "Medications" },
   { key: "appointments", label: "Appointments" },
   { key: "support", label: "Support" },
+  { key: "insights", label: "AI Insights" },
 ];
 
 const Notifications = () => {
